@@ -1,0 +1,9 @@
+{{add-todo onAdd=(action 'addTodo')}}
+
+<ul>
+  {{#each todos as |todo|}}
+  <li class="{{ if todo.isCompleted 'strike-through' }}">
+    {{todo.text}}
+  </li>
+  {{/each}}
+</ul>
