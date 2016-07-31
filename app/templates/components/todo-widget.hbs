@@ -7,3 +7,9 @@
     You have nothing to do!
   {{/each}}
 </ul>
+
+{{#if isCompleted}}
+<div>
+  <a href='' {{ action 'clearCompleted' }}>Clear completed</a>
+</div>
+{{/if}}

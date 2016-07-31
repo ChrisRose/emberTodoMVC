@@ -4,8 +4,7 @@ import EmberValidations from 'ember-validations';
 export default Ember.Component.extend(EmberValidations, {
   validations: {
     'text': {
-      presence: true,
-      length: { minimum: 5 }
+      presence: true
     }
   },
   actions: {
