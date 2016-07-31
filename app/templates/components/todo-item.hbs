@@ -5,14 +5,21 @@
         checked=model.isCompleted
         change=(action "toggleTodo")}}
     {{#if editMode}}
-      {{input type="text" focus-out="saveTodo" value=model.text}}
+      {{#focus-input}}
+        {{input type="text"
+          insert-newline="saveTodo"
+          focus-out="saveTodo"
+          value=model.text}}
+      {{/focus-input}}
     {{else}}
       <label>
-        <span {{ action "editTodo" on="doubleClick" }} class="{{ if model.isCompleted 'strike-through' }}">
+        <span {{action "editTodo" on="doubleClick"}} class="{{if model.isCompleted 'strike-through'}}">
           {{ model.text }}
         </span>
       </label>
     {{/if}}
-    <button {{ action "removeTodo" }} class="destroy">x</button>
+    {{#unless editMode}}
+      <button {{action "removeTodo"}} class="destroy">x</button>
+    {{/unless}}
   </div>
 </li>

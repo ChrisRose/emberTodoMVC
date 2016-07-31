@@ -5,7 +5,6 @@ export default Ember.Component.extend({
   actions: {
     editTodo() {
       this.set('editMode', true);
-      this.$().find('input[type=text]').focus();
     },
     removeTodo() {
       const todo = this.get('model');
