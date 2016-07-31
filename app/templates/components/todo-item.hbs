@@ -3,6 +3,7 @@
     <label>
       {{input type="checkbox"
           name="todoCheckBox"
+          checked=model.isCompleted
           change=(action "toggleTodo")}}
       <span class="{{ if model.isCompleted 'strike-through' }}">
         {{ model.text }}

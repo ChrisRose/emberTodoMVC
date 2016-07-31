@@ -1,9 +1,7 @@
 import Ember from 'ember';
 
-const todos = [];
-
 export default Ember.Route.extend({
   model() {
-    return todos;
+    return this.get('store').findAll('todo');
   }
 });

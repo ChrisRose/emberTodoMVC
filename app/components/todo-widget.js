@@ -1,26 +1,30 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  store: Ember.inject.service(),
+
   isCompleted: Ember.computed('todos.@each.isCompleted', function() {
-    var todos = this.get('todos');
+    let todos = this.get('todos');
     return todos.filterBy('isCompleted', true);
   }),
 
   actions: {
     addTodo(text) {
-      this.get('todos').pushObject(Ember.Object.create({
+      let todo = this.get('store').createRecord('todo', {
         text: text,
         isCompleted: false
-      }));
+      });
+      todo.save();
     },
     toggleTodo(todo) {
       todo.toggleProperty('isCompleted');
+      todo.save();
     },
     clearCompleted() {
-      let todosCopy = this.get('todos').filter(function (todo) {
-        if (todo.isCompleted === false) { return todo };
-      });
-      this.set('todos', todosCopy);
+      let todos = this.get('todos');
+      let completedTodos = todos.filterBy('isCompleted', true);
+      completedTodos.invoke('deleteRecord');
+      completedTodos.invoke('save');
     }
   }
 });
