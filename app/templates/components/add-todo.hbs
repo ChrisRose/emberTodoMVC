@@ -1,4 +1,7 @@
 <form {{action "submit" on="submit"}}>
-  {{input value=text}}
+  {{input value=text focus-out="unFocused"}}
   <button type="submit">OK</button>
 </form>
+{{#if showError}}
+  {{errors.text}}
+{{/if}}

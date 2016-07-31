@@ -1,9 +1,9 @@
 {{add-todo onAdd=(action 'addTodo')}}
 
 <ul>
-  {{#each todos as |todo|}}
-  <li class="{{ if todo.isCompleted 'strike-through' }}">
-    {{todo.text}}
-  </li>
+  {{#each todos as |todo index|}}
+  {{todo-item onClick=(action 'toggleTodo') model=todo index=index}}
+  {{else}}
+    You have nothing to do!
   {{/each}}
 </ul>
