@@ -1,3 +1,12 @@
-<li {{ action 'toggleTodo' }} class="{{ if model.isCompleted 'strike-through' }}">
-  {{ addOne index }}. {{ model.text }}
+<li>
+  <div class="checkbox">
+    <label>
+      {{input type="checkbox"
+          name="todoCheckBox"
+          change=(action "toggleTodo")}}
+      <span class="{{ if model.isCompleted 'strike-through' }}">
+        {{ model.text }}
+      </span>
+    </label>
+  </div>
 </li>

@@ -1,7 +1,7 @@
-<form {{action "submit" on="submit"}}>
+{{#bs-form action="submit"}}
   {{input value=text focus-out="unFocused"}}
   <button type="submit">OK</button>
-</form>
+{{/bs-form}}
 {{#if showError}}
   {{errors.text}}
 {{/if}}
