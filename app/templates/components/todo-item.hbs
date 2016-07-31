@@ -1,14 +1,18 @@
 <li>
   <div class="checkbox">
-    <label>
-      {{input type="checkbox"
-          name="todoCheckBox"
-          checked=model.isCompleted
-          change=(action "toggleTodo")}}
-      <span class="{{ if model.isCompleted 'strike-through' }}">
-        {{ model.text }}
-      </span>
-      <span {{ action "removeTodo" }} class="remove">x</span>
-    </label>
+    {{input type="checkbox"
+        name="todoCheckBox"
+        checked=model.isCompleted
+        change=(action "toggleTodo")}}
+    {{#if editMode}}
+      {{input type="text" focus-out="saveTodo" value=model.text}}
+    {{else}}
+      <label>
+        <span {{ action "editTodo" on="doubleClick" }} class="{{ if model.isCompleted 'strike-through' }}">
+          {{ model.text }}
+        </span>
+      </label>
+    {{/if}}
+    <button {{ action "removeTodo" }} class="destroy">x</button>
   </div>
 </li>

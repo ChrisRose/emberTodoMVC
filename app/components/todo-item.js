@@ -1,14 +1,24 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  editMode: false,
   actions: {
-    toggleTodo() {
-      const todo = this.get('model');
-      this.get('onToggle')(todo);
+    editTodo() {
+      this.set('editMode', true);
+      this.$().find('input[type=text]').focus();
     },
     removeTodo() {
       const todo = this.get('model');
       this.get('onRemove')(todo);
+    },
+    saveTodo() {
+      const todo = this.get('model');
+      this.get('onSave')(todo);
+      this.set('editMode', false);
+    },
+    toggleTodo() {
+      const todo = this.get('model');
+      this.get('onToggle')(todo);
     }
   }
 });

@@ -2,7 +2,11 @@
 
 <ul class="list-unstyled">
   {{#each todos as |todo index|}}
-  {{todo-item onToggle=(action 'toggleTodo') onRemove=(action 'removeTodo') model=todo index=index}}
+  {{todo-item onToggle=(action 'toggleTodo')
+    onRemove=(action 'removeTodo')
+    onSave=(action 'saveTodo')
+    model=todo
+    index=index}}
   {{else}}
     Nothing to see here!
   {{/each}}

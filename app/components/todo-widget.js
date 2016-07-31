@@ -21,18 +21,21 @@ export default Ember.Component.extend({
       });
       todo.save();
     },
-    toggleTodo(todo) {
-      todo.toggleProperty('isCompleted');
-      todo.save();
-    },
-    removeTodo(todo) {
-      todo.destroyRecord();
-    },
     clearCompleted() {
       let todos = this.get('todos');
       let completedTodos = todos.filterBy('isCompleted', true);
       completedTodos.invoke('deleteRecord');
       completedTodos.invoke('save');
+    },
+    removeTodo(todo) {
+      todo.destroyRecord();
+    },
+    saveTodo(todo) {
+      todo.save();
+    },
+    toggleTodo(todo) {
+      todo.toggleProperty('isCompleted');
+      todo.save();
     }
   }
 });
