@@ -2,9 +2,9 @@
 
 <ul class="list-unstyled">
   {{#each todos as |todo index|}}
-  {{todo-item onClick=(action 'toggleTodo') model=todo index=index}}
+  {{todo-item onToggle=(action 'toggleTodo') onRemove=(action 'removeTodo') model=todo index=index}}
   {{else}}
-    You have nothing to do!
+    Nothing to see here!
   {{/each}}
 </ul>
 
@@ -17,3 +17,9 @@
   <a href='' {{ action 'clearCompleted' }}>Clear completed</a>
 </div>
 {{/if}}
+
+<ul class="list-inline">
+  <li>{{#link-to "todos"}}All{{/link-to}}</li>
+  <li>{{#link-to "todos.active"}}Active{{/link-to}}</li>
+  <li>{{#link-to "todos.completed"}}Completed{{/link-to}}</li>
+</ul>

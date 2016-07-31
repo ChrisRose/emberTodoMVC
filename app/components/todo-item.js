@@ -4,7 +4,11 @@ export default Ember.Component.extend({
   actions: {
     toggleTodo() {
       const todo = this.get('model');
-      this.get('onClick')(todo);
+      this.get('onToggle')(todo);
+    },
+    removeTodo() {
+      const todo = this.get('model');
+      this.get('onRemove')(todo);
     }
   }
 });

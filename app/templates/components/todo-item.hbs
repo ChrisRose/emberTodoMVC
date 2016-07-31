@@ -8,6 +8,7 @@
       <span class="{{ if model.isCompleted 'strike-through' }}">
         {{ model.text }}
       </span>
+      <span {{ action "removeTodo" }} class="remove">x</span>
     </label>
   </div>
 </li>

@@ -25,6 +25,9 @@ export default Ember.Component.extend({
       todo.toggleProperty('isCompleted');
       todo.save();
     },
+    removeTodo(todo) {
+      todo.destroyRecord();
+    },
     clearCompleted() {
       let todos = this.get('todos');
       let completedTodos = todos.filterBy('isCompleted', true);
