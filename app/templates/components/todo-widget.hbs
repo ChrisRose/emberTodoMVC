@@ -8,6 +8,10 @@
   {{/each}}
 </ul>
 
+{{#if todos.length}}
+  {{pluralize incompleteCount 'item'}} left
+{{/if}}
+
 {{#if isCompleted}}
 <div>
   <a href='' {{ action 'clearCompleted' }}>Clear completed</a>

@@ -3,6 +3,11 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   store: Ember.inject.service(),
 
+  incompleteCount: Ember.computed('todos.@each.isCompleted', function() {
+    let todos = this.get('todos');
+    return todos.filterBy('isCompleted', false).length;
+  }),
+
   isCompleted: Ember.computed('todos.@each.isCompleted', function() {
     let todos = this.get('todos');
     return todos.filterBy('isCompleted', true);
