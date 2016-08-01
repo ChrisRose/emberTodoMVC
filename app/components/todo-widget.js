@@ -3,13 +3,13 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   store: Ember.inject.service(),
 
-  incompleteCount: Ember.computed('todos.@each.isCompleted', function() {
-    let todos = this.get('todos');
+  incompleteCount: Ember.computed('allTodos.@each.isCompleted', function() {
+    let todos = this.get('allTodos');
     return todos.filterBy('isCompleted', false).length;
   }),
 
-  isCompleted: Ember.computed('todos.@each.isCompleted', function() {
-    let todos = this.get('todos');
+  isCompleted: Ember.computed('allTodos.@each.isCompleted', function() {
+    let todos = this.get('allTodos');
     return todos.filterBy('isCompleted', true);
   }),
 
@@ -22,7 +22,7 @@ export default Ember.Component.extend({
       todo.save();
     },
     clearCompleted() {
-      let todos = this.get('todos');
+      let todos = this.get('allTodos');
       let completedTodos = todos.filterBy('isCompleted', true);
       completedTodos.invoke('deleteRecord');
       completedTodos.invoke('save');

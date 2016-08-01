@@ -3,7 +3,7 @@
   {{add-todo onAdd=(action 'addTodo')}}
 </header>
 
-{{#if todos}}
+{{#if allTodos}}
   <section class="main">
     <input class="toggle-all" type="checkbox">
   	<label for="toggle-all">Mark all as complete</label>
@@ -19,16 +19,16 @@
   </section>
 
   <footer class="footer">
-    {{#if todos.length}}
+    {{#if allTodos.length}}
       <span class="todo-count">
         <strong>{{incompleteCount}}</strong>
         {{pluralize-word incompleteCount 'item' omitCount=true}} left
       </span>
     {{/if}}
     <ul class="filters">
-      <li>{{#link-to "todos"}}All{{/link-to}}</li>
-      <li>{{#link-to "todos.active"}}Active{{/link-to}}</li>
-      <li>{{#link-to "todos.completed"}}Completed{{/link-to}}</li>
+      <li>{{#link-to "todos.index" activeClass="selected"}}All{{/link-to}}</li>
+      <li>{{#link-to "todos.active" activeClass="selected"}}Active{{/link-to}}</li>
+      <li>{{#link-to "todos.completed" activeClass="selected"}}Completed{{/link-to}}</li>
     </ul>
     {{#if isCompleted}}
       <button {{action 'clearCompleted'}} class="clear-completed">Clear completed</button>
