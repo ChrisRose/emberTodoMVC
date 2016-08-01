@@ -1,29 +1,34 @@
-{{add-todo onAdd=(action 'addTodo')}}
+<header class="header">
+  <h1>todos</h1>
+  {{add-todo onAdd=(action 'addTodo')}}
+</header>
 
-<ul class="list-unstyled">
-  {{#each todos as |todo index|}}
-  {{todo-item onToggle=(action 'toggleTodo')
-    onRemove=(action 'removeTodo')
-    onSave=(action 'saveTodo')
-    model=todo
-    index=index}}
-  {{else}}
-    Nothing to see here!
-  {{/each}}
-</ul>
+{{#if todos}}
+  <section class="main">
+    <input class="toggle-all" type="checkbox">
+  	<label for="toggle-all">Mark all as complete</label>
+    <ul class="todo-list">
+      {{#each todos as |todo index|}}
+      {{todo-item onToggle=(action 'toggleTodo')
+        onRemove=(action 'removeTodo')
+        onSave=(action 'saveTodo')
+        model=todo
+        index=index}}
+      {{/each}}
+    </ul>
+  </section>
 
-{{#if todos.length}}
-  {{pluralize incompleteCount 'item'}} left
+  <footer class="footer">
+    {{#if todos.length}}
+      <span class="todo-count">{{pluralize incompleteCount 'item'}} left</span>
+    {{/if}}
+    <ul class="filters">
+      <li>{{#link-to "todos"}}All{{/link-to}}</li>
+      <li>{{#link-to "todos.active"}}Active{{/link-to}}</li>
+      <li>{{#link-to "todos.completed"}}Completed{{/link-to}}</li>
+    </ul>
+    {{#if isCompleted}}
+      <button {{action 'clearCompleted'}} class="clear-completed">Clear completed</button>
+    {{/if}}
+  </footer>
 {{/if}}
-
-{{#if isCompleted}}
-<div>
-  <a href='' {{action 'clearCompleted'}}>Clear completed</a>
-</div>
-{{/if}}
-
-<ul class="list-inline">
-  <li>{{#link-to "todos"}}All{{/link-to}}</li>
-  <li>{{#link-to "todos.active"}}Active{{/link-to}}</li>
-  <li>{{#link-to "todos.completed"}}Completed{{/link-to}}</li>
-</ul>

@@ -1,7 +1,7 @@
-{{#bs-form action="submit"}}
-  {{input value=text focus-out="unFocused"}}
-  <button type="submit">OK</button>
-{{/bs-form}}
-{{#if showError}}
-  {{errors.text}}
-{{/if}}
+<form {{action "submit" on="submit"}}>
+  {{input class="new-todo"
+  placeholder="What needs to be done?"
+  value=text
+  autofocus="autofocus"
+  focus-out="unFocused"}}
+</form>

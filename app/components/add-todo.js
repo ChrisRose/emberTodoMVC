@@ -10,7 +10,7 @@ export default Ember.Component.extend(EmberValidations, {
   actions: {
     submit() {
       this.validate().then(() => {
-        const text = this.get('text');
+        const text = this.get('text').trim();
         this.get('onAdd')(text);
         this.set('text', '');
         this.$('input').focus();
