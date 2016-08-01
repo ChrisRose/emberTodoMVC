@@ -20,7 +20,10 @@
 
   <footer class="footer">
     {{#if todos.length}}
-      <span class="todo-count">{{pluralize incompleteCount 'item'}} left</span>
+      <span class="todo-count">
+        <strong>{{incompleteCount}}</strong>
+        {{pluralize-word incompleteCount 'item' omitCount=true}} left
+      </span>
     {{/if}}
     <ul class="filters">
       <li>{{#link-to "todos"}}All{{/link-to}}</li>
