@@ -13,6 +13,17 @@ export default Ember.Component.extend({
     return todos.filterBy('isCompleted', true);
   }),
 
+  allCompleted: Ember.computed('todos.@each.isCompleted', function(key, value) {
+    let todos = this.get('todos');
+    if (value === undefined) {
+      return todos && todos.isEvery('isCompleted');
+    } else {
+      todos.setEach('isCompleted', value);
+      todos.save();
+      return value;
+    }
+  }),
+
   actions: {
     addTodo(text) {
       let todo = this.get('store').createRecord('todo', {
@@ -21,21 +32,31 @@ export default Ember.Component.extend({
       });
       todo.save();
     },
+
     clearCompleted() {
       let todos = this.get('allTodos');
       let completedTodos = todos.filterBy('isCompleted', true);
       completedTodos.invoke('deleteRecord');
       completedTodos.invoke('save');
     },
+
     removeTodo(todo) {
       todo.destroyRecord();
     },
+
     saveTodo(todo) {
       todo.save();
     },
+
     toggleTodo(todo) {
       todo.toggleProperty('isCompleted');
       todo.save();
+    },
+
+    toggleTodos(value) {
+      let todos = this.get('allTodos');
+      todos.setEach('isCompleted', value);
+      todos.save();
     }
   }
 });
