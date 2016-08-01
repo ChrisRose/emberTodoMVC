@@ -11,5 +11,5 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{add-todo}}`);
 
-  assert.equal(this.$().text().trim(), 'OK');
+  assert.equal(this.$().text().trim(), '');
 });
