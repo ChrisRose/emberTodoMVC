@@ -1,15 +1,38 @@
 import { moduleForComponent, test } from 'ember-qunit';
+import sinon from 'sinon';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('add-todo', 'Integration | Component | add todo', {
   integration: true
 });
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+test('should trigger an external action on form submit if the input value is valid', function(assert) {
+  this.set('addTodo', (actual) => {
+    let expected = 'Buy milk';
+    assert.equal(actual, expected, 'submitted value is passed to external action');
+  });
+  this.render(hbs`{{add-todo onAdd=(action addTodo)}}`);
+  this.$('input').val('Buy milk');
+  this.$('input').change();
+  this.$('input').submit();
+});
 
-  this.render(hbs`{{add-todo}}`);
+test('should not trigger an external action on form submit if the input value is invalid', function(assert) {
+  let spy = sinon.spy();
+  this.set('addTodo', spy);
+  this.render(hbs`{{add-todo onAdd=(action addTodo)}}`);
+  this.$('input').val('');
+  this.$('input').change();
+  this.$('input').submit();
+  assert.ok(spy.notCalled);
+});
 
-  assert.equal(this.$().text().trim(), '');
+test('should clear input value and focus the input after submit', function(assert) {
+  this.set('addTodo', () => {});
+  this.render(hbs`{{add-todo onAdd=(action addTodo)}}`);
+  this.$('input').val('Buy milk');
+  this.$('input').change();
+  this.$('input').submit();
+  assert.equal(this.$('input').val(), '', 'clears the input');
+  assert.deepEqual(document.activeElement, this.$('input')[0], 'input has focus');
 });
