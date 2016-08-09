@@ -3,7 +3,7 @@
   {{add-todo onAdd=(action "addTodo")}}
 </header>
 
-{{#if allTodos}}
+{{#if todos}}
   <section class="main">
     {{input type="checkbox"
             checked=allCompleted
@@ -11,7 +11,7 @@
             class="toggle-all"}}
   	<label for="toggle-all">Mark all as complete</label>
     <ul class="todo-list">
-      {{#each todos as |todo index|}}
+      {{#each filteredTodos as |todo index|}}
       {{todo-item onToggle=(action "toggleTodo")
         onRemove=(action "removeTodo")
         onSave=(action "saveTodo")
@@ -22,7 +22,7 @@
   </section>
 
   <footer class="footer">
-    {{#if allTodos.length}}
+    {{#if todos.length}}
       <span class="todo-count">
         <strong>{{incompleteCount}}</strong>
         {{pluralize-word incompleteCount "item" omitCount=true}} left

@@ -3,13 +3,25 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   store: Ember.inject.service(),
 
-  incompleteCount: Ember.computed('allTodos.@each.isCompleted', function() {
-    let todos = this.get('allTodos');
+  filteredTodos: Ember.computed('todos.@each.isCompleted', function() {
+    let todos = this.get('todos');
+    let filter = this.get('filter')
+    if (filter === 'completed') {
+      return todos.filterBy('isCompleted', true);
+    } else if (filter ==='active') {
+      return todos.filterBy('isCompleted', false);
+    } else {
+      return todos;
+    }
+  }),
+
+  incompleteCount: Ember.computed('todos.@each.isCompleted', function() {
+    let todos = this.get('todos');
     return todos.filterBy('isCompleted', false).length;
   }),
 
-  isCompleted: Ember.computed('allTodos.@each.isCompleted', function() {
-    let todos = this.get('allTodos');
+  isCompleted: Ember.computed('todos.@each.isCompleted', function() {
+    let todos = this.get('todos');
     return todos.filterBy('isCompleted', true);
   }),
 
@@ -34,7 +46,7 @@ export default Ember.Component.extend({
     },
 
     clearCompleted() {
-      let todos = this.get('allTodos');
+      let todos = this.get('todos');
       let completedTodos = todos.filterBy('isCompleted', true);
       completedTodos.invoke('deleteRecord');
       completedTodos.invoke('save');
@@ -54,7 +66,7 @@ export default Ember.Component.extend({
     },
 
     toggleTodos(value) {
-      let todos = this.get('allTodos');
+      let todos = this.get('todos');
       todos.setEach('isCompleted', value);
       todos.save();
     }
