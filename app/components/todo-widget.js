@@ -5,7 +5,7 @@ export default Ember.Component.extend({
 
   filteredTodos: Ember.computed('todos.@each.isCompleted', function() {
     let todos = this.get('todos');
-    let filter = this.get('filter')
+    let filter = this.get('filter');
     if (filter === 'completed') {
       return todos.filterBy('isCompleted', true);
     } else if (filter ==='active') {

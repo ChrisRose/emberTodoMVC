@@ -12,11 +12,9 @@
       <button {{action "removeTodo"}} class="destroy"></button>
     {{/unless}}
   </div>
-  {{#focus-input}}
-    {{input type="text"
-      class="edit"
-      insert-newline="saveTodo"
-      focus-out="saveTodo"
-      value=model.text}}
-  {{/focus-input}}
+  {{input type="text"
+    class="edit"
+    insert-newline="saveTodo"
+    focus-out="saveTodo"
+    value=model.text}}
 </li>
