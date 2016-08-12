@@ -6,6 +6,7 @@ moduleForComponent('todo-item', 'Integration | Component | todo item', {
 });
 
 test('should set the todo element`s class to `editing` when it`s double-clicked', function(assert) {
+  assert.expect(1);
   this.render(hbs`{{todo-item}}`);
   let todoItem = this.$('li');
   this.$('label').dblclick();
@@ -13,6 +14,7 @@ test('should set the todo element`s class to `editing` when it`s double-clicked'
 });
 
 test('should trigger removeTodo when the remove button is clicked', function(assert) {
+  assert.expect(1);
   this.set('todo', {
     text: 'Buy milk',
     isCompleted: false
@@ -25,6 +27,7 @@ test('should trigger removeTodo when the remove button is clicked', function(ass
 });
 
 test('should trigger saveTodo when the input loses focus', function(assert) {
+  assert.expect(2);
   this.set('todo', {
     text: '',
     isCompleted: false
@@ -41,6 +44,7 @@ test('should trigger saveTodo when the input loses focus', function(assert) {
 });
 
 test('should trigger toggleTodo when the input is toggled', function(assert) {
+  assert.expect(1);
   this.set('todo', {
     text: 'Buy milk',
     isCompleted: false
