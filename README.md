@@ -23,7 +23,7 @@ You will need the following things properly installed on your computer.
 ## Running / Development
 
 * `ember server`
-* Visit your app at [http://localhost:4200/todos](http://localhost:4200/todos).
+* Visit your app at [http://localhost:4200/](http://localhost:4200/).
 
 ### Code Generators
 
@@ -41,7 +41,7 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-Specify what it takes to deploy your app.
+* [Deploying with Ember CLI](https://ember-cli.com/user-guide/#deployments)
 
 ## Further Reading / Useful Links
 
