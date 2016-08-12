@@ -39,7 +39,7 @@ export default Ember.Component.extend({
   actions: {
     addTodo(text) {
       let todo = this.get('store').createRecord('todo', {
-        text: text,
+        text: text.trim(),
         isCompleted: false
       });
       todo.save();
@@ -57,7 +57,13 @@ export default Ember.Component.extend({
     },
 
     saveTodo(todo) {
-      todo.save();
+      let text = Ember.get(todo, 'text').trim();
+      if (text === '') {
+        todo.destroyRecord();
+      } else {
+        todo.set('text', text);
+        todo.save();
+      }
     },
 
     toggleTodo(todo) {

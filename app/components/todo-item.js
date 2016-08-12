@@ -22,6 +22,15 @@ export default Ember.Component.extend({
     toggleTodo() {
       const todo = this.get('model');
       this.get('onToggle')(todo);
+    },
+
+    cancelEdit(text, event) {
+      const ESCAPE_KEY = 27;
+      if (event.keyCode === ESCAPE_KEY) {
+        const todo = this.get('model');
+        todo.rollbackAttributes();
+        this.set('editMode', false);
+      }
     }
   },
 
