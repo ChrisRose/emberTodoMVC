@@ -7,7 +7,6 @@ export default Ember.Component.extend({
       if (text === '') {
         return;
       }
-      text = text.trim();
       this.get('onAdd')(text);
       this.set('text', '');
       this.$('input').focus();

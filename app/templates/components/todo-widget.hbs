@@ -12,11 +12,11 @@
   	<label for="toggle-all">Mark all as complete</label>
     <ul class="todo-list">
       {{#each filteredTodos as |todo index|}}
-      {{todo-item onToggle=(action "toggleTodo")
-        onRemove=(action "removeTodo")
-        onSave=(action "saveTodo")
-        model=todo
-        index=index}}
+        {{todo-item onToggle=(action "toggleTodo")
+          onRemove=(action "removeTodo")
+          onSave=(action "saveTodo")
+          model=todo
+          index=index}}
       {{/each}}
     </ul>
   </section>
