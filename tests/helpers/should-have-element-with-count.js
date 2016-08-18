@@ -1,9 +1,4 @@
-import Ember from 'ember';
-
-export default Ember.Test.registerHelper('shouldHaveElementWithCount',
-  function(app, assert, selector, n, context) {
-    const el = findWithAssert(selector, context);
-    const count = el.length;
-    assert.equal(n, count, `found ${count} times`);
-  }
-);
+export default function shouldHaveElementWithCount (assert, selector, context, n) {
+  const count = find(selector, context).length;
+  assert.equal(n, count, `found ${count} times`);
+}
